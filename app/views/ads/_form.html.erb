@@ -1,17 +1,38 @@
 <%= form_with(model: ad, local: true) do |form| %>
-  <% if ad.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ad.errors.count, "error") %> prohibited this ad from being saved:</h2>
+<% if ad.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(ad.errors.count, "error") %>
+      prohibited this ad from being saved:</h2>
 
-      <ul>
+    <ul>
       <% ad.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+    </ul>
   </div>
+<% end %>
+
+<div class="field">
+  <%= form.label :Anuncio %>
+  <%= form.text_field :title %>
+</div>
+
+<div class="field">
+  <%= form.label :Categoria %>
+  <%= form.select :category, options_for_select(@categories), prompt: 'selecciona una categoría' %>
+</div>
+
+<div class="field">
+<% @tags.each do |tag|%>
+<%= form.fields_for :ads_tags do |t|%>
+<%= t.label tag.title %>
+<%= t.check_box tag.id %>
+<% end%>
+<% end%>
+</div>
+
+
+<div class="actions">
+<%= form.submit %>
+</div>
 <% end %>

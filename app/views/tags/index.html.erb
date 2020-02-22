@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tags</h1>
+<h2>Tags</h2>
 
 <table>
   <thead>
@@ -12,6 +12,7 @@
   <tbody>
     <% @tags.each do |tag| %>
       <tr>
+        <td><%= tag.title %></td>
         <td><%= link_to 'Show', tag %></td>
         <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
         <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
